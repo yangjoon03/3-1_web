@@ -1,0 +1,51 @@
+body{
+    background-color: #DFD0B8;
+}
+
+header {
+    background-color: #222831;
+    color: white;              /* 텍스트 색 */
+    padding: 5px;             /* 안쪽 여백 */
+  }
+
+.title{
+    font-size : 50px;
+    text-align : center;
+    margin : 10px ; /*요소 바깥 */
+}
+
+
+.main-nav {
+    background-color: #393E46;
+    padding: 10px 0;
+    text-align: center;
+  }
+  
+  .main-nav ul {
+    list-style: none; /* 점 없애기 */
+    margin: 0;
+    padding: 0;
+    display: inline-flex; /* 가로 배치 */
+    gap: 20px;
+  }
+  
+  .main-nav li {
+    /* 아무것도 안 해도 되지만 필요한 경우 여기에 스타일 */
+    color: white;
+  }
+  
+  .main-nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 8px 12px;
+    /* transition: background 0.3s; */
+  }
+  
+  .main-nav a:hover {
+    background-color: #00ADB5;
+    border-radius: 4px;
+  }
+
+
+
