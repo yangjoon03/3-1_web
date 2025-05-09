@@ -2,6 +2,103 @@ body{
     background-color: #DFD0B8;
 }
 
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center /*세로로 중앙 정렬 */
+  justify-content: flex-start; /* 왼쪽 정렬 */
+  padding-left: 0;
+  height:500px;
+  padding-top : 50px;
+}
+
+.profile {
+  width: 60%;           /* 가로폭의 80% 차지 */
+  /*margin: 0 auto;       /* 수평 중앙 정렬 */
+  text-align: left;  /* 내부 텍스트 및 이미지 가운데 정렬*/
+  padding-left : 10%; 
+}
+
+.profile img{
+  width: 300px;
+  height: 300px;
+  border-radius: 50%; 
+  object-fit: cover;
+  margin: 20px 20px 10px 20px;
+
+}
+.profile p{
+  background-color: #222831;
+  width:300px;
+    color: white;              /* 텍스트 색 */
+    padding: 5px; 
+    text-align : center;
+    font-size: 25px;
+    border-radius: 10px;
+    /* margin: 0 auto; */
+    margin-left : 20px;
+    margin-right : 20px;
+
+}
+
+
+@media (max-width: 768px) {
+  .wrapper {
+    flex-direction: column;
+    height: auto;
+    align-items: center;
+  }
+url(style.css)
+  .profile, .navigation {
+    width: 100%;
+    padding-left: 0;
+    text-align: center;
+  }
+  .profile p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+
+.navigation {
+  /* 필요에 따라 사이즈 지정 가능 */
+}
+
+.skills-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.skills-list li {
+  display: flex;              /* 이미지 + 텍스트를 수평으로 배치 */
+  align-items: center;        /* 수직 가운데 정렬 */
+  gap: 8px;                   /* 이미지와 텍스트 사이 간격 */
+  height: 50px;           /*     전체 요소 높이 */
+}
+
+.skills-list li img {
+  width: 45px;
+  height: 45px;
+}
+
+.skills-list li span {
+  font-size: 30px;          /* 텍스트 크기 = 이미지 크기 */
+  line-height: 1;             /* 줄 간격 줄이기 */
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700; /* Bold */
+}
+
+
+
+/* @media(max-width: 1000px){
+  .wrapper{
+    padding-left: 0;
+    justify-content: center;
+  }
+} */
+
 header {
     background-color: #222831;
     color: white;              /* 텍스트 색 */
