@@ -63,6 +63,7 @@ url(style.css)
 
 .navigation {
   /* 필요에 따라 사이즈 지정 가능 */
+  margin-top: 20px;
 }
 
 .skills-list {
