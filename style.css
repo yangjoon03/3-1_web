@@ -5,12 +5,14 @@ body{
 .wrapper {
   display: flex;
   flex-wrap: wrap;
-  align-items: center /*세로로 중앙 정렬 */
+  align-items: center; /*세로로 중앙 정렬 */
   justify-content: flex-start; /* 왼쪽 정렬 */
   padding-left: 0;
   height:500px;
   padding-top : 50px;
 }
+
+
 
 .profile {
   width: 60%;           /* 가로폭의 80% 차지 */
@@ -42,13 +44,14 @@ body{
 }
 
 
+
+
 @media (max-width: 768px) {
   .wrapper {
     flex-direction: column;
     height: auto;
     align-items: center;
   }
-url(style.css)
   .profile, .navigation {
     width: 100%;
     padding-left: 0;
@@ -91,8 +94,18 @@ url(style.css)
   font-weight: 700; /* Bold */
 }
 
+.wrapper_project{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start; /* 왼쪽 정렬 */
+  padding-left: 0;
+  padding-top : 50px;
+}
 
+.navigation_width{
+  background-color:#00ADB5;
 
+}
 /* @media(max-width: 1000px){
   .wrapper{
     padding-left: 0;
