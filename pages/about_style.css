@@ -1,0 +1,90 @@
+.banner {
+    position: relative;
+    width: 100%;
+    height: 1000px;
+    overflow: hidden;
+}
+
+.banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.banner-content {
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    color: white;
+}
+
+
+.banner-text {
+    font-size: 5vw;
+    font-weight: bold;
+    margin: 0;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+/* 수평 메뉴 */
+.banner-menu {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    margin-top: 20px;
+    padding: 0;
+}
+
+.banner-menu li a {
+    display: block;
+    width : 7vw;
+    text-decoration: none;
+    color: black;
+    font-size: 1.5vw;
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.6);
+    padding: 8px 12px;
+    border-radius: 6px;
+}
+
+
+
+.banner-menu li a:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+}
+
+/* 중간 빈 공간 */
+.blank{
+    height : 300px;
+}
+
+
+/* 정보 제공  css  */
+.information{
+    background-color: black;
+    padding : 0;
+    margin:0;
+}
+.information .title {
+    font-size: 2.5vw;      
+    font-weight: bold;     
+    margin-bottom: 10px;
+    color : white;
+    margin-bottom :0;
+}
+
+.information .sub-title {
+    font-size: 1.5vw;      
+    font-weight: normal;   
+    padding-top : 0;
+    margin: 1px 0;
+    color: white;
+}
+
+.container{
+    display:flex;
+    background-color: rgb(7, 7, 10);
+
+}
+
