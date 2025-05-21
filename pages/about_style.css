@@ -82,9 +82,47 @@
     color: white;
 }
 
-.container{
-    display:flex;
-    background-color: rgb(7, 7, 10);
-
+.container {
+    background-color: blue;
+    padding: 20px;
 }
 
+/* 상단 제목 */
+.container-text {
+    width: 100%;
+    font-size: 2.5vw;
+    color: white;
+    margin-bottom: 20px;
+    margin-top:20px;
+}
+
+/* 텍스트와 이미지가 나란히 */
+.content-row {
+    display: flex;
+    gap: 20px; /* 여유 공간 */
+}
+
+/* 왼쪽 텍스트 */
+.text-item {
+    flex: 2;
+}
+
+/* 오른쪽 이미지 */
+.img-item {
+    flex : 1;
+    max-width:100%;
+    
+}
+.img-item img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50px;
+    object-fit: cover; /* 이미지가 컨테이너에 맞게 채워지도록 */
+}
+
+/* 일반 본문 텍스트 */
+.container-content {
+    font-size: 2vw;
+    color: white;
+    margin-bottom: 10px;
+}

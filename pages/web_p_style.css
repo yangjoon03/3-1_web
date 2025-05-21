@@ -1,0 +1,156 @@
+
+
+
+
+.profile_img{
+    background-color: blue;
+    padding: 0 0 0 10%;
+    margin:0;
+    border:0;
+    font-size: 25px;
+    color : white;
+    width:60%;
+    background-clip: content-box;
+}
+
+.skills ul{
+    padding: 0;
+    list-style: none;
+
+}
+.skills ul li{
+    font-size: 25px;
+}
+
+
+
+.menu {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.menu li {
+    flex: 1;             
+    text-align: center;
+    border: 1px solid black;
+    font-size : 25px;
+}
+
+.menu li:hover{
+    background-color: lightblue;
+}
+
+
+
+/* 드롭다운 메뉴 구현 */
+.dropdown {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display:flex;
+}
+
+.dropdown-item {
+    position: relative;
+    flex : 1;
+}
+
+.dropdown-item > a {
+    color: white;
+    text-decoration: none;
+    padding: 14px 20px;
+    display: block;
+    background-color: black;
+}
+
+.dropdown-item > a:hover {
+    background-color: lightgray;
+}
+
+.dropdown-item:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    width:100%;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-content li a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* .dropdown-content li a:hover {
+    background-color: #575757;
+} */
+
+
+
+.faceRecoginition-id-button{
+    background-color: black;
+}
+.faceRecoginition-id-button .banner {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap:20px;
+    background-color: #007bff;
+}
+
+.faceRecoginition-id-button .banner li {
+    color: white;
+    font-size:25px;
+    border-radius: 10px; /* 모서리 둥글게 */
+    border: 2px solid black;
+    padding:0 20px 0 20px;
+}
+
+.faceRecoginition-id-button .banner li > a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.layout{
+    background-color: salmon;
+}
+
+.layout p{
+    color:white;
+    font-size:25px;
+    
+}
+.layout .content{
+    background-color:white;
+}
+.layout .content .content-text{
+    background-color:burlywood;
+    width:80%;
+}
+
+.layout .content{
+    display: flex;
+}
+
+.layout .content-img{
+    flex : 1;
+    max-width:100%;
+}
+.layout .content-img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 이미지가 컨테이너에 맞게 채워지도록 */
+    
+}
