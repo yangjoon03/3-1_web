@@ -1,0 +1,131 @@
+body{
+    background-color: black;
+}
+
+
+.header{
+    position:fixed;
+    top : 0;
+    left : 0;
+    width:100%;
+    z-index:1000;
+    margin-top:30px;
+
+}
+
+.header .header-menu{
+    display:flex;
+}
+
+.col-group-left{
+    flex:1;
+}
+.menu{
+    padding-left:40px;
+    padding-top:30px;
+}
+.col-group-left .menu{
+    margin:0;
+}
+
+.col-group-left .menu .menu-name{
+    
+    font-family: 'Poppins', sans-serif;   
+    font-size:40px;
+    font-weight: bold;
+    color:white;
+}
+.col-group-center{
+    flex:1;
+    display: flex;
+    justify-content: center;
+}
+
+
+.col-group-right {
+    /* flex:1;
+    color: white;
+    display: flex;
+    justify-content: right;
+    font-family: 'Poppins', sans-serif;  
+    font-size:40px;
+    font-weight: bold;
+    padding-right:40px;
+    text-align: right; */
+    flex :1;
+    display:flex;
+    justify-content: flex-end;
+}
+.search-form{
+    padding-right:40px;
+    padding-top:30px;
+}
+
+.search-form input{
+    font-size:40px;
+    border:none;
+    border-bottom: 2px solid white;
+    background-color: transparent;
+    color:white;
+    font-family: 'Poppins', sans-serif;  
+    font-weight: bold;
+    width:15vw;
+}
+
+.search-form input::placeholder{
+    color:white;
+    font-size: 40px;
+    text-align: right;
+    border:none;
+    
+}
+
+input:focus {
+  outline: none;
+  border-bottom: 2px solid white;
+}
+
+
+/* .search-form input[type="text"]{
+    flex:1;
+    
+} */
+
+/* .col-group-right .search-input{
+    flex:1;
+    border: none;
+    border-bottom: 2px solid white;
+    font-size:40px;
+    text-align: right;
+    justify-content: center;
+    background-color: transparent;
+    font-family: 'Poppins', sans-serif;   
+    font-weight: bold;
+    color:white;
+} */
+
+.a-center{
+    text-decoration: none;
+    color: inherit;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;   
+    font-size:70px;
+    font-weight: bold;
+    color:white;
+    
+    
+}
+
+.section img {
+  width: 100%;      /* 부모 요소의 너비에 맞춤 */
+  height: auto;     /* 비율 유지하며 높이 자동 조절 */
+  display: block;   /* 하단 여백 제거 (inline 요소의 특성 방지) */
+  filter: brightness(70%);
+}
+
+
+
+
+.blank-space{
+    height: 250px;
+}
