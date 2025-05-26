@@ -1,6 +1,7 @@
 body{
     background-color: white;
     margin:0;
+    padding:0;
 }
 
 
@@ -32,9 +33,7 @@ body{
     margin:0;
 }
 
-.col-group-left .menu .menu-name{
-    
-    font-family: 'Poppins', sans-serif;   
+.col-group-left .menu .menu-name{   
     font-size:2.3vw;
     font-weight: bold;
     color:white;
@@ -51,7 +50,6 @@ body{
     color: white;
     display: flex;
     justify-content: right;
-    font-family: 'Poppins', sans-serif;  
     font-size:40px;
     font-weight: bold;
     padding-right:40px;
@@ -72,7 +70,6 @@ body{
     border-bottom: 2px solid white;
     background-color: transparent;
     color:white;
-    font-family: 'Poppins', sans-serif;  
     font-weight: bold;
     width:15vw;
     padding:0;
@@ -126,7 +123,6 @@ input:focus {
     text-align: right;
     justify-content: center;
     background-color: transparent;
-    font-family: 'Poppins', sans-serif;   
     font-weight: bold;
     color:white;
 } */
@@ -135,12 +131,15 @@ input:focus {
     text-decoration: none;
     color: inherit;
     text-align: center;
-    font-family: 'Poppins', sans-serif;   
     font-size:4vw;
     font-weight: bold;
     color:white;
     
     
+}
+.section{
+    position:relative;
+    width:100%;
 }
 
 .section img {
@@ -148,6 +147,27 @@ input:focus {
   height: auto;     /* 비율 유지하며 높이 자동 조절 */
   display: block;   /* 하단 여백 제거 (inline 요소의 특성 방지) */
   filter: brightness(70%);
+}
+.overlay-text {
+  position: absolute;
+  top: 27%;
+  left: 8%;
+}
+
+.overlay-text h1{
+    color: white;
+    font-size: 3.8vw;
+    font-weight: bold;
+    text-align: left;
+    margin:0;
+}
+.overlay-text h2{
+    text-align: left;
+    margin:0;
+    color: white;
+    font-size: 3vw;
+    font-weight: bold;
+    text-align: left;
 }
 
 
@@ -175,11 +195,12 @@ input:focus {
 
 .content-center{
     /* height:300px; */
-    width:70%;
+    width:80%;
     /* background-color: white; */
     /* border-radius: px;
     border-width:5px; */
-    
+    margin-bottom:40px;
+    /* background-color:rgb(250, 250, 250); */
 }
 
 
@@ -194,8 +215,8 @@ input:focus {
 
 .content-hor{
     display:flex;
-    border-radius: 5px ;
-    border:solid 1.5px gray;
+    border-radius: 12px ;
+    /* border:solid 3px rgb(231, 231, 231); */
     
 }
 
@@ -203,36 +224,122 @@ input:focus {
     flex:2;
     /* background-color: red; */
     font-size:25px;
-    font-weight: bold;
-}
-.hor-text span{
-    font-size: 3.5vw;
-    padding-left:20px;
-    font-family: 'Poppins', sans-serif;   
-    font-weight: bold;
+    /* font-weight: bold; */
 }
 
-.hor-text p{
-    font-size: 2vw;
-    padding: 0px 0px 10px 20px;
-    margin:0px;
-    font-family: 'Poppins', sans-serif;   
+
+
+
+
+.hor-text span{
+    font-size: 3.5vw;
+    /* padding-left:20px; */
+    margin-left:20px;
+    /* font-weight: bold; */
+    /* font-family: 'Orbitron', sans-serif; */
+    
     font-weight: bold;
+    color:rgb(29, 29, 29);
+    display:block;
+    border-bottom:2px solid rgb(168, 168, 168);
+}
+
+
+.hor-text p{
+    font-size: 1.8vw;
+    /* padding: 0px 0px 10px 20px; */
+    margin : 7px 0px 7px 20px;
+    /* margin:0px; */
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Orbitron', sans-serif;
+    font-weight:550;
+    color:rgb(43, 43, 43);
+
+
+    
+
+    /* font-weight: bold; */
     
 }
 
 .hor-img{
     flex:0.8;
     /* background-color: yellow; */
-    padding:10px;
+    padding:20px;
+    padding-right:0px;
 }
 
 .hor-img img{
     /* padding:20px; */
-    border-radius: 10px;
+    border-radius: 12px;
     width:100%;
     height:100%;
-    border:1.5px solid black;
+    /* border:3px solid rgb(231, 231, 231); */
     box-sizing: border-box;
+    /* padding:5px; */
+
+}
+
+/* .content-evenly-hor {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    width: 80%;
+    margin: auto;
+}
+
+.hor-evenly-item {
+    flex: 1;
+}
+
+.hor-evenly-img {
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
+    object-fit: cover;
+} */
+
+.content-evenly{
+    background-color:black;
+    color:white;
+    /* display:flex; */
+    padding-bottom: 40px;
+}
+
+
+.blank-title {
+    display: flex;
+    justify-content: center;   /* 수평 가운데 정렬 */
+    align-items: center;       /* 수직 가운데 정렬 */
+    text-align: center;
+    font-size: 5vw;
+    padding:20px;
+    /* letter-spacing: 0.5em; */
+    font-family: 'Monoton', cursive;
+}
+
+
+
+.content-evenly-hor {
+    display: flex;
+    /* justify-content: center; */
+    gap: 20px;
+    width: 80%;
+    margin: auto;
+}
+
+.hor-evenly-item {
+    flex: 1;
+}
+
+.hor-evenly-img {
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
+    object-fit: cover;
+    height:30vw;
+    border-radius: 5px;
+    border : 1px solid rgb(196, 196, 196);
 
 }
