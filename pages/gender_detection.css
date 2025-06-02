@@ -1,0 +1,8 @@
+
+.section{
+    box-sizing: border-box;
+}
+
+.section img{
+    width:100%;
+}
