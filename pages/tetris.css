@@ -1,0 +1,164 @@
+* {
+  box-sizing: border-box;
+  
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  /* background-color: #EDEDE9; */
+  background-color: black;
+}
+
+header, nav, section, article, aside, footer {
+  /* padding: 20px; */
+  margin: 10px;
+  /* border-radius: 8px; */
+  color: #fff;
+  /* border: 2px solid black; */
+  border: 5px solid white;
+}
+
+header {
+  background-color: #00f0f0;
+  text-align: center;
+  /* color:#fff; */
+  /* padding :3px; */
+  /* margin:10px; */
+  /* border-radius: 8px; */
+  
+  margin-bottom: 20px;
+}
+
+
+
+header h1{
+    font-size: 60px;
+    padding:0px;
+    margin:10px;
+}
+
+
+nav {
+  background-color: #f0a000;
+  padding:0px;
+}
+
+
+nav ul{
+    display:flex;
+    list-style: none;
+    padding:0px;
+    margin:0px;
+    
+}
+nav ul li{
+    flex:1;
+    align-items: center;
+    text-align: center;
+    padding:5px;
+
+}
+
+nav ul li:hover{
+    background-color: #cf8a02;
+    color:black;
+}
+
+
+
+nav  ul li a{
+    font-size: 35px;
+    text-decoration: none;
+    color: inherit;
+    
+}
+
+
+
+
+
+main {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+section {
+  background-color: #f0f000;
+    flex: 2;
+  min-width: 200px;
+  color:rgb(15, 15, 15);
+  font-weight: bold;
+  
+}
+
+section h2{
+    font-size: 45px;
+    margin:10px;
+}
+
+section p{
+    margin:0px;
+    margin-left:10px;
+    font-size:25px;
+    
+}
+
+aside {
+  background-color: #00f000;
+  /* flex: 1; */
+  min-width: 150px;
+}
+
+aside video{
+    padding:10px;
+}
+
+article {
+  background-color: #a000f0; 
+  width: 100%;
+  margin-top: 10px;
+  /* color:black; */
+  font-weight: bold;
+}
+
+article h2{
+    font-size: 45px;
+    margin:10px;
+
+}
+
+article p {
+    margin:0px 0px 10px 10px;
+    /* margin-left:10px; */
+    font-size:25px;
+}
+
+footer {
+  background-color: #f00000;
+  text-align: center;
+  font-weight: bold;
+}
+
+footer span{
+    font-size: 20px;
+}
+
+@media (max-width: 768px) {
+  main {
+    flex-direction: column;
+  }
+
+  aside {
+    order: 2;
+  }
+
+  section {
+    order: 1;
+  }
+
+  article {
+    order: 3;
+  }
+}
