@@ -11,14 +11,14 @@
 <body>
     <div class="login-container">
         <h2>로그인</h2>
-        <form action="/index.html" method="post">
-            <input type="text" name="username" placeholder="아이디" required>
-            <input type="password" name="password" placeholder="비밀번호" required>
+        <form onsubmit="login(event)">
+            <input type="email" id="email" placeholder="이메일" required>
+            <input type="password" id="password" placeholder="비밀번호" required>
             <input type="submit" value="로그인">
-        </form >
+        </form>
         <div class="register">
             계정이 없으신가요? 
-            <a href="/register">회원가입</a>
+            <a href="/register.html">회원가입</a>
         </div>
     </div>
     <script src="login.js"></script>
