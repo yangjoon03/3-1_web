@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elaina's DevLog</title>
+    <style>
+        /* --- 1. 테마 컬러 설정 --- */
+        :root {
+            --bg-color: #f7f8fa;
+            --primary-purple: #9b59b6;
+            --deep-purple: #8e44ad;
+            --text-black: #2c3e50;
+            --text-gray: #7f8c8d;
+            --card-bg: #ffffff;
+            --hover-shadow: rgba(155, 89, 182, 0.25);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Pretendard', 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-black);
+            line-height: 1.6;
+        }
+
+        /* --- 2. 헤더 & 로그인 --- */
+        header {
+            position: fixed; top: 0; left: 0; width: 100%; height: 60px;
+            background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 20px; box-sizing: border-box; z-index: 1000;
+        }
+        .header-logo { font-weight: 700; color: var(--primary-purple); font-size: 1.2rem; text-decoration: none; }
+        .header-right { display: flex; align-items: center; }
+        .login-btn { padding: 8px 20px; background: var(--primary-purple); color: white; border: none; border-radius: 20px; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: background 0.3s; }
+        .login-btn:hover { background: var(--deep-purple); }
+        .user-profile-area { display: flex; align-items: center; gap: 10px; animation: fadeIn 0.5s ease; }
+        .header-profile-img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary-purple); }
+        .header-username { font-weight: 600; font-size: 0.95rem; }
+        .logout-text { font-size: 0.8rem; color: var(--text-gray); margin-left: 10px; cursor: pointer; text-decoration: underline; }
+
+        /* --- 3. 레이아웃 --- */
+        .container { max-width: 900px; margin: 80px auto 60px; padding: 0 20px; }
+
+        /* Hero Section */
+        .hero-section { margin-bottom: 60px; animation: fadeIn 1s ease-out; }
+        .hero-title { font-size: 2.2rem; font-weight: 800; margin-bottom: 20px; }
+        .hero-img { width: 100%; height: 400px; object-fit: cover; border-radius: 16px; margin-bottom: 0px; transition: transform 0.3s; }
+        .hero-img:hover { transform: scale(1.01); }
+        .hero-desc{margin: 0; font-size: 1.4rem;font-weight: bold;}
+        /* Profile Section */
+        .profile-section { background: white; border-radius: 16px; padding: 40px; display: flex; align-items: center; gap: 40px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); border-left: 6px solid var(--primary-purple); margin-bottom: 60px; }
+        .profile-pic-large { width: 200px; height: 200px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+        .social-links { display: flex; gap: 12px; margin-top: 15px; }
+        .social-btn { padding: 8px 16px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; color: white; }
+        .social-btn.github { background-color: #24292e; }
+        .social-btn.notion { background-color: #fff; border: 1px solid #d9d9d9; color: #37352f; }
+        .social-btn.instagram { background: linear-gradient(45deg, #f09433 0%, #cc2366 75%); }
+
+        /* DB Gallery */
+        .db-section-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 20px; border-left: 5px solid var(--primary-purple); padding-left: 10px; }
+        .search-wrapper { position: relative; margin-bottom: 30px; }
+        .search-input { width: 100%; padding: 15px 20px; padding-right: 100px; border: 2px solid #e0e0e0; border-radius: 12px; font-size: 1rem; outline: none; box-sizing: border-box; }
+        .search-input:focus { border-color: var(--primary-purple); }
+        .search-btn { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); padding: 8px 20px; background: var(--primary-purple); color: white; border: none; border-radius: 8px; cursor: pointer; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; margin-bottom: 60px; }
+        .gallery-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.03); transition: transform 0.3s; }
+        .gallery-card:hover { transform: translateY(-5px); }
+        .card-img { width: 100%; height: 150px; object-fit: cover; }
+        .card-body { padding: 16px; }
+        .tag { font-size: 0.75rem; padding: 3px 8px; background: #f0f2f5; border-radius: 4px; margin-right: 5px; }
+        .tag.highlight { background: rgba(155, 89, 182, 0.1); color: var(--deep-purple); }
+
+        /* --- 4. 댓글 시스템 (NEW) --- */
+        .comment-section { background: white; border-radius: 16px; padding: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
+        
+        /* 입력 폼 */
+        .comment-form { display: flex; gap: 15px; margin-bottom: 30px; align-items: flex-start; }
+        .comment-input { flex-grow: 1; padding: 15px; border: 2px solid #e0e0e0; border-radius: 12px; resize: none; height: 50px; font-family: inherit; outline: none; transition: border-color 0.3s; }
+        .comment-input:focus { border-color: var(--primary-purple); }
+        .comment-submit { padding: 0 25px; height: 84px; background: var(--primary-purple); color: white; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 1rem; }
+        .comment-submit:hover { background: var(--deep-purple); }
+
+        /* 댓글 리스트 */
+        .comment-list { list-style: none; padding: 0; margin: 0; }
+        .comment-item { padding: 20px 0; border-bottom: 1px solid #eee; display: flex; gap: 15px; animation: fadeIn 0.5s; }
+        .comment-item:last-child { border-bottom: none; }
+        .comment-avatar { width: 40px; height: 40px; border-radius: 50%; background: #ddd; object-fit: cover; }
+        .comment-content { flex-grow: 1; }
+        .comment-header { display: flex; justify-content: space-between; margin-bottom: 5px; }
+        .comment-user { font-weight: bold; color: var(--text-black); }
+        .comment-date { font-size: 0.8rem; color: #aaa; }
+        .comment-text { color: #555; font-size: 0.95rem; white-space: pre-line; }
+
+        /* 페이지네이션 */
+        .pagination { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }
+        .page-btn { padding: 8px 15px; border: 1px solid #ddd; background: white; border-radius: 6px; cursor: pointer; color: var(--text-black); transition: all 0.2s; }
+        .page-btn:hover:not(:disabled) { border-color: var(--primary-purple); color: var(--primary-purple); }
+        .page-btn:disabled { opacity: 0.5; cursor: not-allowed; background: #f9f9f9; }
+        .page-info { display: flex; align-items: center; font-size: 0.9rem; color: #777; }
+
+        /* 반응형 */
+        @media (max-width: 768px) {
+            .profile-section { flex-direction: column; text-align: center; }
+            .comment-form { flex-direction: column; }
+            .comment-input { width: 100%; box-sizing: border-box; }
+            .comment-submit { width: 100%; height: 50px; }
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="header-logo">YangJunYeong</a>
+        <div class="header-right" id="authSection">
+            </div>
+    </header>
+
+    <div class="container">
+        <section class="hero-section">
+            <h1 class="hero-title">Representative Project</h1>
+            <img src="about_img/FGA.jpg" alt="Main Project" class="hero-img">
+            <p class="hero-desc">F.G.A [We are filtered through face, gender, age.]</p>
+        </section>
+
+        <section class="profile-section">
+            <img src="about_img/elaina.jpg" alt="Profile" class="profile-pic-large">
+            <div class="profile-content">
+                <h2 id="mainProfileName">capable developer</h2>
+                <p>새로운 기술을 좋아하는 개발자입니다.</p>
+                <div class="social-links">
+                    <a href="https://github.com/yangjoon03" class="social-btn github">GitHub</a>
+                    <a href="https://www.notion.so/1c22a67dc5a380b491e0e8bcd31d1316" class="social-btn notion">Notion</a>
+                    <a href="#" class="social-btn instagram">Instagram</a>
+                </div>
+            </div>
+        </section>
+        
+
+        <section>
+            <div class="db-section-title">Project Archive</div>
+            <div class="search-wrapper">
+                <input type="text" id="searchInput" class="search-input" placeholder="검색..." onkeyup="if(window.event.keyCode==13){searchDB()}">
+                <button class="search-btn" onclick="searchDB()">검색</button>
+            </div>
+            <div class="gallery-grid" id="galleryGrid"></div>
+        </section>
+
+        <section class="comment-section">
+            <div class="db-section-title">Guest Book (Comments)</div>
+            
+            <div class="comment-form">
+                <textarea id="commentInput" class="comment-input" placeholder="자유롭게 방명록을 남겨주세요..."></textarea>
+                <button class="comment-submit" onclick="addComment()">등록</button>
+            </div>
+
+            <ul class="comment-list" id="commentList">
+                </ul>
+
+            <div class="pagination">
+                <button class="page-btn" id="prevPageBtn" onclick="changePage(-1)">Previous</button>
+                <span class="page-info" id="pageInfo">Page 1</span>
+                <button class="page-btn" id="nextPageBtn" onclick="changePage(1)">Next</button>
+            </div>
+        </section>
+
+    </div>
+
+    <footer style="text-align: center; padding: 40px 0; color: #999; border-top: 1px solid #eee; margin-top: 50px;">
+        Copyright © 2024 Developer Portfolio. All rights reserved.
+    </footer>
+
+    <script>
+        // --- [데이터] 유저 & 프로젝트 DB ---
+        const mockUser = { name: "Elaina", avatar: "https://via.placeholder.com/100/9b59b6/ffffff?text=E" };
+        const guestAvatar = "https://via.placeholder.com/100/cccccc/ffffff?text=G";
+        let isLoggedIn = false;
+
+        const mockDB = [
+            { title: "이미지 프로세싱", img: "https://via.placeholder.com/400x250/34495e/ffffff?text=Python", tags: ["Python", "OpenCV"], desc: "이미지 자동 리사이징 툴" },
+            { title: "임베디드 시스템", img: "https://via.placeholder.com/400x250/7f8c8d/ffffff?text=C", tags: ["C언어", "HW"], desc: "MCU 센서 제어" },
+            { title: "웹 크롤러", img: "https://via.placeholder.com/400x250/9b59b6/ffffff?text=Data", tags: ["Python", "Pandas"], desc: "데이터 수집 및 시각화" },
+            { title: "IoT 대시보드", img: "https://via.placeholder.com/400x250/2c3e50/ffffff?text=IoT", tags: ["JS", "React"], desc: "스마트홈 모니터링" }
+        ];
+
+        // --- [데이터] 댓글 더미 데이터 (25개 생성) ---
+        let comments = [];
+        for(let i=1; i<=25; i++) {
+            comments.push({
+                id: i,
+                user: `Visitor ${i}`,
+                avatar: guestAvatar,
+                content: `방명록 테스트 메시지입니다. (${i}번째 글)`,
+                date: `2024-05-${String(i).padStart(2, '0')}`
+            });
+        }
+        // 최신순 정렬 (ID가 클수록 최신이라고 가정하거나, unshift로 관리)
+        comments.sort((a, b) => b.id - a.id);
+
+        // 페이지네이션 설정
+        let currentPage = 1;
+        const itemsPerPage = 10;
+
+        // --- [초기 실행] ---
+        window.onload = function() {
+            renderAuthUI();
+            renderGallery(mockDB);
+            renderComments(); // 댓글 렌더링
+        };
+
+        // --- [로그인 로직] ---
+        function toggleLogin() {
+            isLoggedIn = !isLoggedIn;
+            renderAuthUI();
+            const mainName = document.getElementById('mainProfileName');
+            mainName.textContent = isLoggedIn ? "The Ashen Witch, Elaina" : "Wandering Developer";
+            mainName.style.color = isLoggedIn ? "#9b59b6" : "#2c3e50";
+        }
+
+        function renderAuthUI() {
+            const authSection = document.getElementById('authSection');
+            if (isLoggedIn) {
+                authSection.innerHTML = `<div class="user-profile-area"><img src="${mockUser.avatar}" class="header-profile-img"><span class="header-username">${mockUser.name}</span><span class="logout-text" onclick="toggleLogin()">Logout</span></div>`;
+            } else {
+                authSection.innerHTML = `<button class="login-btn" onclick="toggleLogin()">Login</button>`;
+            }
+        }
+
+        // --- [갤러리 로직] ---
+        function searchDB() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = mockDB.filter(i => i.title.toLowerCase().includes(input) || i.tags.some(t => t.toLowerCase().includes(input)));
+            renderGallery(filtered);
+        }
+        function renderGallery(data) {
+            const grid = document.getElementById('galleryGrid');
+            grid.innerHTML = '';
+            if(data.length===0) { grid.innerHTML='<p style="grid-column:1/-1;text-align:center;color:#999">결과 없음</p>'; return;}
+            data.forEach(item => {
+                const tags = item.tags.map(t => `<span class="tag ${['Python','C언어'].some(k=>t.includes(k))?'highlight':''}">${t}</span>`).join('');
+                grid.innerHTML += `<div class="gallery-card"><img src="${item.img}" class="card-img"><div class="card-body"><div style="margin-bottom:8px">${tags}</div><h3 style="margin:0 0 5px;font-size:1.1rem">${item.title}</h3><p style="color:#777;font-size:0.9rem;margin:0">${item.desc}</p></div></div>`;
+            });
+        }
+
+        // --- [댓글 시스템 로직] (핵심) ---
+        
+        // 1. 댓글 렌더링 (페이지네이션 적용)
+        function renderComments() {
+            const list = document.getElementById('commentList');
+            list.innerHTML = '';
+
+            // 페이지 슬라이싱
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const pageData = comments.slice(startIndex, endIndex);
+
+            if(pageData.length === 0) {
+                list.innerHTML = '<li style="text-align:center; color:#999; padding:20px;">첫 댓글의 주인공이 되어보세요!</li>';
+            } else {
+                pageData.forEach(cmt => {
+                    const li = document.createElement('li');
+                    li.className = 'comment-item';
+                    li.innerHTML = `
+                        <img src="${cmt.avatar}" class="comment-avatar" alt="user">
+                        <div class="comment-content">
+                            <div class="comment-header">
+                                <span class="comment-user">${cmt.user}</span>
+                                <span class="comment-date">${cmt.date}</span>
+                            </div>
+                            <div class="comment-text">${cmt.content}</div>
+                        </div>
+                    `;
+                    list.appendChild(li);
+                });
+            }
+            updatePaginationUI();
+        }
+
+        // 2. 페이지 변경
+        function changePage(direction) {
+            currentPage += direction;
+            renderComments();
+            // 스크롤을 댓글 섹션 위로 살짝 이동 (선택사항)
+            // document.querySelector('.comment-section').scrollIntoView({behavior: 'smooth'});
+        }
+
+        // 3. 페이지네이션 UI 업데이트
+        function updatePaginationUI() {
+            const prevBtn = document.getElementById('prevPageBtn');
+            const nextBtn = document.getElementById('nextPageBtn');
+            const info = document.getElementById('pageInfo');
+            
+            const totalPages = Math.ceil(comments.length / itemsPerPage) || 1;
+
+            info.textContent = `Page ${currentPage} / ${totalPages}`;
+            prevBtn.disabled = (currentPage === 1);
+            nextBtn.disabled = (currentPage === totalPages);
+        }
+
+        // 4. 댓글 추가
+        function addComment() {
+            const input = document.getElementById('commentInput');
+            const text = input.value.trim();
+
+            if (!text) {
+                alert("내용을 입력해주세요.");
+                return;
+            }
+
+            // 현재 유저 정보 가져오기 (로그인 안했으면 Guest)
+            const currentUser = isLoggedIn ? mockUser.name : "Guest";
+            const currentAvatar = isLoggedIn ? mockUser.avatar : guestAvatar;
+            const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+
+            // 새 댓글 객체 생성
+            const newComment = {
+                id: comments.length + 1, // 고유 ID (단순증가)
+                user: currentUser,
+                avatar: currentAvatar,
+                content: text,
+                date: today
+            };
+
+            // 배열 맨 앞에 추가 (최신순)
+            comments.unshift(newComment);
+
+            // 입력창 초기화 및 첫 페이지로 이동하여 렌더링
+            input.value = '';
+            currentPage = 1; 
+            renderComments();
+        }
+    </script>
+</body>
+</html>
