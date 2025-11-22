@@ -1,43 +1,28 @@
 const SERVER_URL = "http://127.0.0.1:2500";
 
-async function register() {
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
+
+async function login(event) {
+    event.preventDefault();
+
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
 
     try {
-        const response = await fetch(`${SERVER_URL}/register`, {
+        const response = await fetch(`${SERVER_URL}/login`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ username, password })
+            body: JSON.stringify({ email, password }),  // <- 여기 변경
+            credentials: "include"
         });
 
-        const data = await response.json(); // 서버에서 JSON 데이터 받기
-        console.log(data);
+        const result = await response.json();
+        alert(result.msg);
+
+        if (result.msg.includes("성공")) {
+            window.location.href = "index.html";
+        }
 
     } catch (error) {
-        console.error('회원가입 에러:', error);
+        console.error("로그인 에러:", error);
     }
-}
-
-
-async function  login() {
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-    
-    try{
-        const response = await fetch('${SERVER_URL}/login'.{
-            method: "POST",
-            headers:{"Content-Type":"application/json"},
-            body : JSON.stringify({username,password})
-        });
-        const result = await response.json();
-        alert(result.msg)
-    }
-
-    catch(error){
-        console.error("로그인 에러",error);
-    }
-
-
-    
 }
