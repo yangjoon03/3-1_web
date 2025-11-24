@@ -1,26 +1,34 @@
+const SERVER_URL = "http://127.0.0.1:8081";
 
-// 페이지 로드 시 로그인 상태 확인
-async function checkLogin() {
-  try {
-    const response = await fetch("http://127.0.0.1:2500/check-login", {
-      credentials: "include" // 쿠키 전달 필수
-    });
-    const data = await response.json();
+async function checkLoginStatus() {
+    const statusDiv = document.getElementById('login-status'); // 상태 표시를 위한 HTML 요소
+    
+    try {
+        const response = await fetch(`${SERVER_URL}/check-login`, {
+            credentials: 'include'
+        });
+        const data = await response.json();
 
-    if (data.loggedIn) {
-      console.log("로그인 상태:", data.user);
-      // 예: 로그인된 사용자 이름을 화면에 표시할 수 있음
-      // document.getElementById("usernameDisplay").textContent = data.user.name;
-    } else {
-      console.log("로그인 안 됨");
-      // 예: 로그인하지 않은 사용자용 UI 처리
-      // window.location.href = "login.html"; // 원하면 로그인 페이지로 이동
+        if (data.loggedIn) {
+            // 로그인 상태
+            console.log("✅ 세션 유효: 현재 로그인 상태입니다.");
+            if (statusDiv) {
+                statusDiv.innerHTML = `환영합니다, <strong>${data.user.name}</strong>님! <button onclick="logout()">로그아웃</button>`;
+            }
+        } else {
+            // 로그아웃 상태 또는 세션 만료 시
+            // 🚨 세션이 끝났을 때 콘솔에 출력하는 부분
+            console.warn("⚠️ 세션 만료 또는 로그아웃 상태: 로그인 정보가 없습니다.");
+            
+            if (statusDiv) {
+                statusDiv.innerHTML = `<a href="/login.html">로그인</a> | <a href="/register.html">회원가입</a>`;
+            }
+        }
+
+    } catch (error) {
+        console.error("🚨 상태 확인 중 오류 발생: 서버에 연결할 수 없습니다.", error);
     }
-
-  } catch (error) {
-    console.error("로그인 상태 확인 실패:", error);
-  }
 }
 
-// 페이지가 로드되면 로그인 상태 체크
-checkLogin();
+// 페이지가 로드될 때 로그인 상태를 확인합니다.
+window.onload = checkLoginStatus;
