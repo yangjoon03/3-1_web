@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-const SERVER_URL = "http://202.31.147.167:8081";
-=======
->>>>>>> e9f6bf6827438b9627ea210b2307645c23b151c6
 
 const SERVER_URL = "http://127.0.0.1:8081";
 
