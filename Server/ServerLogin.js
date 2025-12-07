@@ -11,7 +11,7 @@
     // 미들웨어
     // -------------------------
     app.use(cors({
-        origin: "http://127.0.0.1:5500", // 프론트 주소
+        origin: "http://202.31.147.167:8081", // 프론트 주소
         credentials: true // 세션 쿠키 전달
     }));
     app.use(express.json());

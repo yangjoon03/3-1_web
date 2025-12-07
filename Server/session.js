@@ -2,7 +2,7 @@
 // 페이지 로드 시 로그인 상태 확인
 async function checkLogin() {
   try {
-    const response = await fetch("http://127.0.0.1:2500/check-login", {
+    const response = await fetch("http://202.31.147.167:8081/check-login", {
       credentials: "include" // 쿠키 전달 필수
     });
     const data = await response.json();

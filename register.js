@@ -1,4 +1,4 @@
-const SERVER_URL = "http://127.0.0.1:2500";
+const SERVER_URL = "http://202.31.147.167:8081";
 
 async function registerUser(event) {
     event.preventDefault();
