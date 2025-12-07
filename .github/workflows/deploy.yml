@@ -1,71 +1,40 @@
-# name: Deploy static website to GitHub Pages
+name: Deploy static website to GitHub Pages
 
-# on:
-#   push:
-#     branches: [ "mainzxcxzc" ]
-#   workflow_dispatch:
+on:
+  push:
+    branches: [ "mainzxcxzc" ]
+  workflow_dispatch:
 
-# permissions:
-#   contents: read
-#   pages: write
-#   id-token: write
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
-# concurrency:
-#   group: "pages"
-#   cancel-in-progress: true
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
-# jobs:
-#   build:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Checkout
-#         uses: actions/checkout@v4
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-#       # 정적 사이트 그대로 업로드
-#       - name: Upload artifact
-#         uses: actions/upload-pages-artifact@v3
-#         with:
-#           path: ./
+      # 정적 사이트 그대로 업로드
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./
 
-#   deploy:
-#     needs: build
-#     runs-on: ubuntu-latest
-#     environment:
-#       name: github-pages
-#       url: ${{ steps.deployment.outputs.page_url }}
-#     steps:
-#       - name: Deploy to GitHub Pages
-#         id: deployment
-#         uses: actions/deploy-pages@v4
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
 
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: my-web
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: my-web
-  template:
-    metadata:
-      labels:
-        app: my-web
-    spec:
-      containers:
-      - name: my-web
-        image: yourrepo/myweb:latest
-        ports:
-        - containerPort: 80
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: my-web-service
-spec:
-  type: LoadBalancer
-  selector:
-    app: my-web
-  ports:
-  - port: 80
-    targetPort: 80
